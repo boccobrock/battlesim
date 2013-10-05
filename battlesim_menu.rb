@@ -1,6 +1,6 @@
 class BattleSimMenu < Chingu::GameState
     def setup
-        self.input={ :enter => :select,
+        self.input={ :return => :select,
                      :up_arrow => :up,
                      :down_arrow => :down
         }
@@ -26,6 +26,8 @@ class BattleSimMenu < Chingu::GameState
     end
 
     def select
+        push_game_state(BattleSimPlay, :finalize => false) if @selected == 0 || @selected == 1
+        exit() if @selected == 3
     end
 
     def draw 
